@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Japan Trip 2025 🇯🇵</title>
+    
+    <link rel="icon" type="image/png" href="https://img.icons8.com/color/96/japan.png">
+    <link rel="apple-touch-icon" href="https://img.icons8.com/color/180/japan.png">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&family=Noto+Sans+TC:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        candy: {
+                            bg: '#FFF5F7',      /* 櫻花淡粉底色 */
+                            pink: '#FF9AA2',    
+                            blue: '#A0C4FF',    
+                            mint: '#B5EAD7',    
+                            purple: '#D5AAFF',  
+                            yellow: '#FDFFB6',  
+                            red: '#FF6B6B',     /* 日本紅 */
+                            dark: '#4A405F',    
+                            gray: '#B8B8AA'     
+                        }
+                    },
+                    borderRadius: { '4xl': '2.5rem' },
+                    fontFamily: {
+                        'sans': ['"Varela Round"', '"Noto Sans TC"', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html, body {
+            height: 100%;
+            overflow-x: hidden; 
+        }
+        body { 
+            background-color: #FFF5F7; 
+            color: #4A405F;
+            /* 背景改成櫻花瓣飄落的感覺 */
+            background-image: 
+                radial-gradient(#FF9AA2 1.5px, transparent 1.5px),
+                radial-gradient(#FFDAC1 1.5px, transparent 1.5px);
+            background-size: 30px 30px;
+            background-position: 0 0, 15px 15px;
+            padding-bottom: 0;
+        }
+        body::after {
+            content: "";
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255, 245, 247, 0.92);
+            z-index: -1;
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; } 
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        .card-sticker {
+            background-color: #FFFFFF;
+            border-radius: 1.5rem;
+            box-shadow: 4px 4px 0px rgba(255, 107, 107, 0.1), 0 2px 5px rgba(0,0,0,0.05);
+            border: 3px solid #FFF;
+            transition: transform 0.2s;
+        }
+        .nav-card { transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); transform: scale(0.95); border-radius: 1.25rem; background: white; border: 2px solid #FFF0F0; } 
+        .nav-card.active { transform: scale(1.05) translateY(-5px); background-color: #FFF; border-color: #FF9AA2; color: #FF6B6B; box-shadow: 0 8px 15px -3px rgba(255, 154, 162, 0.4); }
+        .nav-card.active span.day-label { color: #FF6B6B; font-weight: 900; font-size: 1.4rem; }
+
+        .page-section { display: none; animation: popUp 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55); } 
+        .page-section.active { display: block; } 
+        @keyframes popUp { from { opacity: 0; transform: scale(0.9) translateY(20px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+        
+        .timeline-item { position: relative; padding-left: 3.8rem; border-left: 4px dashed #FFD1D1; padding-bottom: 2.5rem; } 
+        .timeline-item:last-child { border-left: none; padding-bottom: 0; }
+        
+        .time-bubble {
+            position: absolute; left: -1.2rem; top: -0.2rem;
+            background: #FFF;
+            border: 2px solid #FF9AA2;
+            color: #FF6B6B;
+            font-size: 0.75rem;
+            font-weight: 800;
+            padding: 0.3rem 0.6rem;
+            border-radius: 1rem;
+            box-shadow: 2px 2px 0 #FF9AA2;
+            z-index: 5;
+            min-width: 3.5rem;
+            text-align: center;
+        }
+
+        .transit-info { 
+            background: #F0F9FF; 
+            border-radius: 1.5rem; padding: 1rem; 
+            border: 2px dashed #A0C4FF; 
+            display: flex; align-items: center; margin-bottom: 1.5rem; 
+            box-shadow: 4px 4px 0 #A0C4FF; 
+            transform: rotate(-1deg);
+        }
+        
+        .map-link { color: #FF9AA2; border-bottom: 3px dotted #FF9AA2; font-weight: 800; transition: all 0.2s; }
+        .map-link:hover { color: #FF6B6B; border-bottom-style: solid; }
+        
+        .bottom-nav-item { color: #C4C4C4; transition: all 0.3s; }
+        .bottom-nav-item.active { color: #FF6B6B; transform: translateY(-8px); }
+        .bottom-nav-item.active .icon-box { 
+            background: linear-gradient(135deg, #FF9AA2 0%, #FFB7B2 100%); 
+            color: white; 
+            box-shadow: 0 6px 15px rgba(255, 154, 162, 0.5); 
+            transform: scale(1.2) rotate(-5deg);
+        }
+        
+        .check-item { transition: all 0.3s; border: 2px solid #F5F5F5; background-color: #FFF; border-radius: 1.2rem; margin-bottom: 0.8rem; }
+        .check-item:active { transform: scale(0.98); }
+        .check-item.checked { opacity: 0.6; background-color: #FAFAFA; border-color: transparent; }
+        .check-item.checked span { text-decoration: line-through; color: #CCC; }
+        .check-item i.fa-check-circle { display: none; }
+        .check-item.checked i.fa-check-circle { display: inline-block; color: #B5EAD7; font-size: 1.4rem; }
+        .check-item.checked i.fa-circle { display: none; }
+
+        input { border: 2px solid #EEE; transition: all 0.3s; border-radius: 1rem; }
+        input:focus { border-color: #FF9AA2; box-shadow: 0 0 0 4px rgba(255, 154, 162, 0.3); outline: none; }
+
+        details > summary { list-style: none; cursor: pointer; outline: none; }
+        details > summary::-webkit-details-marker { display: none; }
+        details[open] summary ~ * { animation: sweep .3s ease-in-out; }
+        @keyframes sweep { 0% {opacity: 0; transform: translateY(-10px)} 100% {opacity: 1; transform: translateY(0)} }
+
+        #flash-card-modal { transition: opacity 0.3s ease; }
+        #flash-card-modal.hidden { pointer-events: none; opacity: 0; }
+        
+        padding-top: env(safe-area-inset-top); 
+        body { padding-bottom: calc(12rem + env(safe-area-inset-bottom)); }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <div id="top-header" class="bg-white/80 backdrop-blur-md pt-4 pb-2 sticky top-0 z-40 shadow-sm border-b-4 border-candy-pink rounded-b-[2.5rem]" style="padding-top: max(1rem, env(safe-area-inset-top));">
+        <h1 class="relative text-center text-2xl font-black text-candy-dark mb-4 tracking-widest flex justify-center items-center drop-shadow-sm">
+            <span class="bg-white text-red-500 w-10 h-10 rounded-full flex items-center justify-center mr-2 shadow-md transform -rotate-12 text-lg border-2 border-red-100">
+                <i class="fas fa-torii-gate"></i>
+            </span>
+            JAPAN <span class="text-candy-red mx-1 font-mono">2025</span>
+        </h1>
+        
+        <div id="day-selector" class="relative flex overflow-x-auto no-scrollbar gap-3 px-4 pb-2 md:justify-center transition-all duration-300">
+            <button onclick="switchDay('day1', this)" data-day="day1" class="nav-card active flex-shrink-0 w-16 h-20 flex flex-col items-center justify-center"><span class="text-[10px] font-bold text-gray-400 mb-1">Day 1</span><span class="font-black text-xl day-label">D1</span></button>
+            <button onclick="switchDay('day2', this)" data-day="day2" class="nav-card flex-shrink-0 w-16 h-20 flex flex-col items-center justify-center"><span class="text-[10px] font-bold text-gray-400 mb-1">Day 2</span><span class="font-black text-xl day-label">D2</span></button>
+            <button onclick="switchDay('day3', this)" data-day="day3" class="nav-card flex-shrink-0 w-16 h-20 flex flex-col items-center justify-center"><span class="text-[10px] font-bold text-gray-400 mb-1">Day 3</span><span class="font-black text-xl day-label">D3</span></button>
+            <button onclick="switchDay('day4', this)" data-day="day4" class="nav-card flex-shrink-0 w-16 h-20 flex flex-col items-center justify-center"><span class="text-[10px] font-bold text-gray-400 mb-1">Day 4</span><span class="font-black text-xl day-label">D4</span></button>
+            <button onclick="switchDay('day5', this)" data-day="day5" class="nav-card flex-shrink-0 w-16 h-20 flex flex-col items-center justify-center"><span class="text-[10px] font-bold text-gray-400 mb-1">Day 5</span><span class="font-black text-xl day-label">D5</span></button>
+        </div>
+    </div>
+
+    <div class="p-4 md:p-6 max-w-2xl mx-auto min-h-[60vh]">
+        
+        <div id="page-day1" class="page-section active space-y-5">
+            <div id="weather-card-day1" class="card-sticker p-4 bg-gradient-to-r from-pink-50 to-white flex justify-between items-center relative overflow-hidden">
+                <div class="flex items-center z-10"><span class="text-4xl mr-4" id="weather-icon-day1">🌤️</span><div><p class="font-black text-gray-700 text-lg">Day 1 預報</p><p class="text-xs text-gray-500 font-bold" id="weather-text-day1">載入中...</p><div class="bg-pink-100 text-pink-600 text-[10px] font-bold px-2 py-1 rounded-lg mt-1 inline-block" id="weather-advice-day1"></div></div></div>
+                <i class="fas fa-mountain absolute -right-6 -bottom-6 text-9xl text-pink-100 opacity-60"></i>
+            </div>
+            <div id="container-day1" class="card-sticker p-6 relative overflow-hidden bg-white/90"></div>
+        </div>
+        <div id="page-day2" class="page-section space-y-5"><div id="weather-card-day2" class="card-sticker p-4 bg-gradient-to-r from-blue-50 to-white flex justify-between items-center relative"><div class="flex items-center z-10"><span class="text-4xl mr-4" id="weather-icon-day2">🌤️</span><div><p class="font-black text-gray-700 text-lg">Day 2 預報</p><p class="text-xs text-gray-500 font-bold" id="weather-text-day2">...</p><div class="bg-blue-100 text-blue-600 text-[10px] font-bold px-2 py-1 rounded-lg mt-1 inline-block" id="weather-advice-day2"></div></div></div></div><div id="container-day2" class="card-sticker p-6 relative bg-white/90"></div></div>
+        <div id="page-day3" class="page-section space-y-5"><div id="weather-card-day3" class="card-sticker p-4 bg-gradient-to-r from-green-50 to-white flex justify-between items-center relative"><div class="flex items-center z-10"><span class="text-4xl mr-4" id="weather-icon-day3">🌤️</span><div><p class="font-black text-gray-700 text-lg">Day 3 預報</p><p class="text-xs text-gray-500 font-bold" id="weather-text-day3">...</p><div class="bg-green-100 text-green-600 text-[10px] font-bold px-2 py-1 rounded-lg mt-1 inline-block" id="weather-advice-day3"></div></div></div></div><div id="container-day3" class="card-sticker p-6 relative bg-white/90"></div></div>
+        <div id="page-day4" class="page-section space-y-5"><div id="weather-card-day4" class="card-sticker p-4 bg-gradient-to-r from-yellow-50 to-white flex justify-between items-center relative"><div class="flex items-center z-10"><span class="text-4xl mr-4" id="weather-icon-day4">🌤️</span><div><p class="font-black text-gray-700 text-lg">Day 4 預報</p><p class="text-xs text-gray-500 font-bold" id="weather-text-day4">...</p><div class="bg-yellow-100 text-yellow-600 text-[10px] font-bold px-2 py-1 rounded-lg mt-1 inline-block" id="weather-advice-day4"></div></div></div></div><div id="container-day4" class="card-sticker p-6 relative bg-white/90"></div></div>
+        <div id="page-day5" class="page-section space-y-5"><div id="weather-card-day5" class="card-sticker p-4 bg-gradient-to-r from-purple-50 to-white flex justify-between items-center relative"><div class="flex items-center z-10"><span class="text-4xl mr-4" id="weather-icon-day5">🌤️</span><div><p class="font-black text-gray-700 text-lg">Day 5 預報</p><p class="text-xs text-gray-500 font-bold" id="weather-text-day5">...</p><div class="bg-purple-100 text-purple-600 text-[10px] font-bold px-2 py-1 rounded-lg mt-1 inline-block" id="weather-advice-day5"></div></div></div></div><div id="container-day5" class="card-sticker p-6 relative bg-white/90"></div></div>
+
+        <div id="page-notes" class="page-section space-y-5">
+            <div class="card-sticker p-5 bg-gradient-to-br from-red-50 to-white border-l-4 border-l-red-400 relative overflow-hidden">
+                <div class="absolute right-0 top-0 opacity-10 text-9xl text-red-500 -mr-4 -mt-4 rotate-12"><i class="fas fa-qrcode"></i></div>
+                <h3 class="text-lg font-black text-red-600 mb-2 flex items-center"><i class="fas fa-passport mr-2"></i>入境手續 Visit Japan Web</h3>
+                <div class="text-sm text-gray-600 font-bold leading-relaxed relative z-10">
+                    <p class="mb-2">請確保在出發前完成 <span class="text-red-500 bg-red-100 px-1 rounded">Visit Japan Web</span> 填寫。</p>
+                    <p class="text-xs bg-white/60 p-2 rounded-lg border border-red-100 text-gray-500">
+                        <i class="fas fa-check-circle mr-1 text-green-500"></i> 截圖保存 QR Code <br>
+                        <i class="fas fa-wifi mr-1 text-blue-500"></i> 入境審查 + 海關申報
+                    </p>
+                    <a href="https://vjw-lp.digital.go.jp/zh-hant/" target="_blank" class="mt-2 block text-center bg-red-500 text-white py-2 rounded-lg text-xs font-black shadow-sm">前往網站</a>
+                </div>
+            </div>
+
+            <div class="card-sticker p-6 bg-white/95">
+                <h2 class="text-2xl font-black text-candy-dark mb-6 flex items-center"><span class="bg-pink-100 w-12 h-12 flex items-center justify-center rounded-full mr-3 text-pink-500 shadow-sm"><i class="fas fa-language fa-bounce"></i></span>生存日語</h2>
+                <div class="space-y-4">
+                    <details class="group bg-white border-2 border-orange-100 rounded-2xl overflow-hidden shadow-sm open:shadow-md transition-all">
+                        <summary class="flex items-center justify-between p-4 cursor-pointer bg-orange-50/50 hover:bg-orange-50 transition">
+                            <div class="flex items-center"><span class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-orange-400 shadow-sm mr-3 text-lg"><i class="fas fa-utensils"></i></span><span class="font-black text-gray-700">餐廳點餐</span></div>
+                            <i class="fas fa-chevron-down text-orange-300 group-open:rotate-180 transition-transform"></i>
+                        </summary>
+                        <div class="p-4 pt-2 border-t border-orange-100 bg-white grid grid-cols-2 gap-3">
+                            <button onclick="showFlashCard('請給我菜單', 'メニューをお願いします')" class="bg-gray-50 hover:bg-orange-100 border border-gray-100 p-3 rounded-xl text-left transition group/btn"><span class="block text-xs text-gray-400 mb-1">請給我菜單</span><span class="block text-sm font-black text-gray-700 group-hover/btn:text-orange-500">メニューを...</span></button>
+                            <button onclick="showFlashCard('我要點這個', 'これをください')" class="bg-gray-50 hover:bg-orange-100 border border-gray-100 p-3 rounded-xl text-left transition group/btn"><span class="block text-xs text-gray-400 mb-1">我要點這個</span><span class="block text-sm font-black text-gray-700 group-hover/btn:text-orange-500">これを...</span></button>
+                            <button onclick="showFlashCard('請給我水', 'お水をお願いします')" class="bg-gray-50 hover:bg-orange-100 border border-gray-100 p-3 rounded-xl text-left transition group/btn"><span class="block text-xs text-gray-400 mb-1">請給我水</span><span class="block text-sm font-black text-gray-700 group-hover/btn:text-orange-500">お水を...</span></button>
+                            <button onclick="showFlashCard('我要結帳', 'お会計をお願いします')" class="bg-gray-50 hover:bg-orange-100 border border-gray-100 p-3 rounded-xl text-left transition group/btn"><span class="block text-xs text-gray-400 mb-1">我要結帳</span><span class="block text-sm font-black text-gray-700 group-hover/btn:text-orange-500">お会計を...</span></button>
+                        </div>
+                    </details>
+                    <details class="group bg-white border-2 border-blue-100 rounded-2xl overflow-hidden shadow-sm open:shadow-md transition-all">
+                        <summary class="flex items-center justify-between p-4 cursor-pointer bg-blue-50/50 hover:bg-blue-50 transition">
+                            <div class="flex items-center"><span class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-blue-400 shadow-sm mr-3 text-lg"><i class="fas fa-shopping-bag"></i></span><span class="font-black text-gray-700">購物 & 交通</span></div>
+                            <i class="fas fa-chevron-down text-blue-300 group-open:rotate-180 transition-transform"></i>
+                        </summary>
+                        <div class="p-4 pt-2 border-t border-blue-100 bg-white grid grid-cols-2 gap-3">
+                            <button onclick="showFlashCard('可以刷卡嗎?', 'カードは使えますか？')" class="bg-gray-50 hover:bg-blue-100 border border-gray-100 p-3 rounded-xl text-left transition group/btn"><span class="block text-xs text-gray-400 mb-1">可以刷卡嗎?</span><span class="block text-sm font-black text-gray-700 group-hover/btn:text-blue-500">カード...</span></button>
+                            <button onclick="showFlashCard('有免稅嗎?', '免税はできますか？')" class="bg-gray-50 hover:bg-blue-100 border border-gray-100 p-3 rounded-xl text-left transition group/btn"><span class="block text-xs text-gray-400 mb-1">有免稅嗎?</span><span class="block text-sm font-black text-gray-700 group-hover/btn:text-blue-500">免税は...</span></button>
+                            <button onclick="showFlashCard('請載我去這裡', 'ここまでお願いします')" class="col-span-2 bg-yellow-50 hover:bg-yellow-100 border border-yellow-100 p-3 rounded-xl text-center transition group/btn"><span class="block text-xs text-gray-400 mb-1"><i class="fas fa-taxi mr-1"></i>給司機看</span><span class="block text-lg font-black text-gray-800 group-hover/btn:text-yellow-600">請載我去這裡</span></button>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <div class="card-sticker p-6 bg-white/95">
+                <h2 class="text-2xl font-black text-candy-dark mb-6 flex items-center"><span class="bg-candy-yellow w-12 h-12 flex items-center justify-center rounded-full mr-3 text-orange-500 shadow-sm"><i class="fas fa-bed"></i></span>住宿資訊</h2>
+                <div class="space-y-4">
+                    <details class="group bg-white border-2 border-candy-purple rounded-2xl overflow-hidden shadow-sm open:shadow-md transition-all">
+                        <summary class="flex items-center justify-between p-4 cursor-pointer bg-purple-50/50 hover:bg-purple-50 transition">
+                            <div class="flex items-center"><span class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-purple-400 shadow-sm mr-3 text-lg"><i class="fas fa-hotel"></i></span><div><h3 class="font-black text-gray-700">東京飯店範例</h3><span class="text-[10px] text-gray-400 font-bold">Tokyo Hotel</span></div></div>
+                            <i class="fas fa-chevron-down text-purple-300 group-open:rotate-180 transition-transform"></i>
+                        </summary>
+                        <div class="p-4 pt-0 border-t border-purple-100 bg-white">
+                            <div class="flex gap-2 my-3">
+                                <a href="https://www.google.com/maps/search/?api=1&query=Shinjuku+Station" target="_blank" class="flex-1 bg-green-500 text-white py-2 rounded-xl text-xs font-black text-center shadow-sm hover:bg-green-600 transition flex items-center justify-center"><i class="fas fa-map-marked-alt mr-1"></i> Google Map</a>
+                                <button onclick="copyText('東京都新宿区...')" class="flex-1 bg-gray-100 text-gray-600 py-2 rounded-xl text-xs font-black hover:bg-gray-200 transition"><i class="fas fa-copy mr-1"></i> 複製地址</button>
+                                <button onclick="showTaxiCard('東京飯店', '東京都新宿区...')" class="flex-1 bg-yellow-400 text-white py-2 rounded-xl text-xs font-black hover:bg-yellow-500 transition shadow-sm"><i class="fas fa-taxi mr-1"></i> 找車</button>
+                            </div>
+                            <div class="text-xs text-gray-500 space-y-2 font-bold bg-gray-50 p-3 rounded-xl">
+                                <p><i class="fas fa-map-pin mr-2 text-purple-400 w-4"></i> 東京都新宿区...</p>
+                                <p><i class="fas fa-phone mr-2 text-purple-400 w-4"></i> +81-3-1234-5678</p>
+                            </div>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <div class="card-sticker p-6 bg-red-50 border-2 border-red-100 relative overflow-hidden">
+                <div class="absolute -right-4 -top-4 text-8xl text-red-200 opacity-20 rotate-12"><i class="fas fa-ambulance"></i></div>
+                <h2 class="text-xl font-black text-red-600 mb-4 flex items-center"><i class="fas fa-exclamation-triangle mr-2"></i> 緊急救援</h2>
+                <div class="grid grid-cols-3 gap-3">
+                    <a href="tel:110" class="bg-white border border-red-200 p-3 rounded-xl flex flex-col items-center justify-center hover:bg-red-600 hover:text-white transition group shadow-sm"><i class="fas fa-user-shield text-2xl text-red-500 mb-1 group-hover:text-white"></i><span class="text-xs font-black">警察 110</span></a>
+                    <a href="tel:119" class="bg-white border border-red-200 p-3 rounded-xl flex flex-col items-center justify-center hover:bg-red-600 hover:text-white transition group shadow-sm"><i class="fas fa-ambulance text-2xl text-red-500 mb-1 group-hover:text-white"></i><span class="text-xs font-black">救護 119</span></a>
