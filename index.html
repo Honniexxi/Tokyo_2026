@@ -229,6 +229,35 @@
             </div>
         
             <div class="card-sticker p-6 bg-white/95">
+                <h2 class="text-2xl font-black text-candy-dark mb-6 flex items-center"><span class="bg-pink-100 w-12 h-12 flex items-center justify-center rounded-full mr-3 text-pink-500 shadow-sm"><i class="fas fa-language fa-bounce"></i></span>生存日語</h2>
+                <div class="space-y-4">
+                    <details class="group bg-white border-2 border-orange-100 rounded-2xl overflow-hidden shadow-sm open:shadow-md transition-all">
+                        <summary class="flex items-center justify-between p-4 cursor-pointer bg-orange-50/50 hover:bg-orange-50 transition">
+                            <div class="flex items-center"><span class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-orange-400 shadow-sm mr-3 text-lg"><i class="fas fa-utensils"></i></span><span class="font-black text-gray-700">餐廳點餐</span></div>
+                            <i class="fas fa-chevron-down text-orange-300 group-open:rotate-180 transition-transform"></i>
+                        </summary>
+                        <div class="p-4 pt-2 border-t border-orange-100 bg-white grid grid-cols-2 gap-3">
+                            <button onclick="showFlashCard('請給我菜單', 'メニューをお願いします')" class="bg-gray-50 hover:bg-orange-100 border border-gray-100 p-3 rounded-xl text-left transition group/btn"><span class="block text-xs text-gray-400 mb-1">請給我菜單</span><span class="block text-sm font-black text-gray-700 group-hover/btn:text-orange-500">メニューを...</span></button>
+                            <button onclick="showFlashCard('我要點這個', 'これをください')" class="bg-gray-50 hover:bg-orange-100 border border-gray-100 p-3 rounded-xl text-left transition group/btn"><span class="block text-xs text-gray-400 mb-1">我要點這個</span><span class="block text-sm font-black text-gray-700 group-hover/btn:text-orange-500">これを...</span></button>
+                            <button onclick="showFlashCard('請給我水', 'お水をお願いします')" class="bg-gray-50 hover:bg-orange-100 border border-gray-100 p-3 rounded-xl text-left transition group/btn"><span class="block text-xs text-gray-400 mb-1">請給我水</span><span class="block text-sm font-black text-gray-700 group-hover/btn:text-orange-500">お水を...</span></button>
+                            <button onclick="showFlashCard('我要結帳', 'お会計をお願いします')" class="bg-gray-50 hover:bg-orange-100 border border-gray-100 p-3 rounded-xl text-left transition group/btn"><span class="block text-xs text-gray-400 mb-1">我要結帳</span><span class="block text-sm font-black text-gray-700 group-hover/btn:text-orange-500">お会計を...</span></button>
+                        </div>
+                    </details>
+                    <details class="group bg-white border-2 border-blue-100 rounded-2xl overflow-hidden shadow-sm open:shadow-md transition-all">
+                        <summary class="flex items-center justify-between p-4 cursor-pointer bg-blue-50/50 hover:bg-blue-50 transition">
+                            <div class="flex items-center"><span class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-blue-400 shadow-sm mr-3 text-lg"><i class="fas fa-shopping-bag"></i></span><span class="font-black text-gray-700">購物 & 交通</span></div>
+                            <i class="fas fa-chevron-down text-blue-300 group-open:rotate-180 transition-transform"></i>
+                        </summary>
+                        <div class="p-4 pt-2 border-t border-blue-100 bg-white grid grid-cols-2 gap-3">
+                            <button onclick="showFlashCard('可以刷卡嗎?', 'カードは使えますか？')" class="bg-gray-50 hover:bg-blue-100 border border-gray-100 p-3 rounded-xl text-left transition group/btn"><span class="block text-xs text-gray-400 mb-1">可以刷卡嗎?</span><span class="block text-sm font-black text-gray-700 group-hover/btn:text-blue-500">カード...</span></button>
+                            <button onclick="showFlashCard('有免稅嗎?', '免税はできますか？')" class="bg-gray-50 hover:bg-blue-100 border border-gray-100 p-3 rounded-xl text-left transition group/btn"><span class="block text-xs text-gray-400 mb-1">有免稅嗎?</span><span class="block text-sm font-black text-gray-700 group-hover/btn:text-blue-500">免税は...</span></button>
+                            <button onclick="showFlashCard('請載我去這裡', 'ここまでお願いします')" class="col-span-2 bg-yellow-50 hover:bg-yellow-100 border border-yellow-100 p-3 rounded-xl text-center transition group/btn"><span class="block text-xs text-gray-400 mb-1"><i class="fas fa-taxi mr-1"></i>給司機看</span><span class="block text-lg font-black text-gray-800 group-hover/btn:text-yellow-600">請載我去這裡</span></button>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        
+            <div class="card-sticker p-6 bg-white/95">
                 <h2 class="text-2xl font-black text-candy-dark mb-6 flex items-center"><span class="bg-candy-yellow w-12 h-12 flex items-center justify-center rounded-full mr-3 text-orange-500 shadow-sm"><i class="fas fa-bed"></i></span>住宿資訊</h2>
                 <div class="space-y-4">
                     <details class="group bg-white border-2 border-candy-blue rounded-2xl overflow-hidden shadow-sm open:shadow-md transition-all" open>
