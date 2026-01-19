@@ -152,11 +152,11 @@
         </h1>
         
         <div id="day-selector" class="relative flex overflow-x-auto no-scrollbar gap-3 px-4 pb-2 md:justify-center transition-all duration-300">
-            <button onclick="switchDay('day1', this)" data-day="day1" class="nav-card active flex-shrink-0 w-16 h-20 flex flex-col items-center justify-center"><span class="text-[10px] font-bold text-gray-400 mb-1">Day 1</span><span class="font-black text-xl day-label">D1</span></button>
-            <button onclick="switchDay('day2', this)" data-day="day2" class="nav-card flex-shrink-0 w-16 h-20 flex flex-col items-center justify-center"><span class="text-[10px] font-bold text-gray-400 mb-1">Day 2</span><span class="font-black text-xl day-label">D2</span></button>
-            <button onclick="switchDay('day3', this)" data-day="day3" class="nav-card flex-shrink-0 w-16 h-20 flex flex-col items-center justify-center"><span class="text-[10px] font-bold text-gray-400 mb-1">Day 3</span><span class="font-black text-xl day-label">D3</span></button>
-            <button onclick="switchDay('day4', this)" data-day="day4" class="nav-card flex-shrink-0 w-16 h-20 flex flex-col items-center justify-center"><span class="text-[10px] font-bold text-gray-400 mb-1">Day 4</span><span class="font-black text-xl day-label">D4</span></button>
-            <button onclick="switchDay('day5', this)" data-day="day5" class="nav-card flex-shrink-0 w-16 h-20 flex flex-col items-center justify-center"><span class="text-[10px] font-bold text-gray-400 mb-1">Day 5</span><span class="font-black text-xl day-label">D5</span></button>
+            <button onclick="switchDay('day1', this)" data-day="day1" class="nav-card active flex-shrink-0 w-16 h-20 flex flex-col items-center justify-center"><span class="text-[10px] font-bold text-gray-400 mb-1">1/23</span><span class="font-black text-xl day-label">Fri</span></button>
+            <button onclick="switchDay('day2', this)" data-day="day2" class="nav-card flex-shrink-0 w-16 h-20 flex flex-col items-center justify-center"><span class="text-[10px] font-bold text-gray-400 mb-1">1/24</span><span class="font-black text-xl day-label">Sat</span></button>
+            <button onclick="switchDay('day3', this)" data-day="day3" class="nav-card flex-shrink-0 w-16 h-20 flex flex-col items-center justify-center"><span class="text-[10px] font-bold text-gray-400 mb-1">1/25</span><span class="font-black text-xl day-label">Sun</span></button>
+            <button onclick="switchDay('day4', this)" data-day="day4" class="nav-card flex-shrink-0 w-16 h-20 flex flex-col items-center justify-center"><span class="text-[10px] font-bold text-gray-400 mb-1">1/26</span><span class="font-black text-xl day-label">Mon</span></button>
+            <button onclick="switchDay('day5', this)" data-day="day5" class="nav-card flex-shrink-0 w-16 h-20 flex flex-col items-center justify-center"><span class="text-[10px] font-bold text-gray-400 mb-1">1/27</span><span class="font-black text-xl day-label">Tue</span></button>
         </div>
     </div>
 
@@ -175,80 +175,90 @@
         <div id="page-day5" class="page-section space-y-5"><div id="weather-card-day5" class="card-sticker p-4 bg-gradient-to-r from-purple-50 to-white flex justify-between items-center relative"><div class="flex items-center z-10"><span class="text-4xl mr-4" id="weather-icon-day5">🌤️</span><div><p class="font-black text-gray-700 text-lg">Day 5 預報</p><p class="text-xs text-gray-500 font-bold" id="weather-text-day5">...</p><div class="bg-purple-100 text-purple-600 text-[10px] font-bold px-2 py-1 rounded-lg mt-1 inline-block" id="weather-advice-day5"></div></div></div></div><div id="container-day5" class="card-sticker p-6 relative bg-white/90"></div></div>
 
         <div id="page-notes" class="page-section space-y-5">
+    
+            <div class="card-sticker p-6 bg-white/95 border-l-4 border-l-blue-400 relative overflow-hidden">
+                <div class="absolute right-0 top-0 opacity-10 text-9xl text-blue-500 -mr-4 -mt-4 rotate-12"><i class="fas fa-plane-departure"></i></div>
+                <h2 class="text-2xl font-black text-candy-dark mb-6 flex items-center"><span class="bg-blue-100 w-12 h-12 flex items-center justify-center rounded-full mr-3 text-blue-500 shadow-sm"><i class="fas fa-ticket-alt"></i></span>航班與交通</h2>
+                
+                <div class="mb-4 bg-blue-50/50 rounded-2xl p-4 border border-blue-100">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="bg-blue-500 text-white text-[10px] font-black px-2 py-1 rounded">去程 1/23 (五)</span>
+                        <span class="text-blue-400 font-black text-lg">CI 104</span>
+                    </div>
+                    <div class="flex justify-between items-center text-gray-700 font-bold mb-3">
+                        <div class="text-center"><span class="block text-2xl font-black">12:35</span><span class="text-xs text-gray-400">TPE 桃園</span></div>
+                        <i class="fas fa-arrow-right text-blue-200"></i>
+                        <div class="text-center"><span class="block text-2xl font-black">16:35</span><span class="text-xs text-gray-400">NRT 成田</span></div>
+                    </div>
+                    <div class="bg-white p-3 rounded-xl border border-blue-100 flex items-start">
+                        <div class="bg-yellow-400 text-white w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mr-3 text-xs font-black shadow-sm"><i class="fas fa-bus"></i></div>
+                        <div>
+                            <p class="text-sm font-black text-gray-700">1962 大有巴士</p>
+                            <p class="text-xs text-gray-500 font-bold mt-1"><i class="fas fa-map-marker-alt mr-1 text-red-400"></i>大同工廠 (08:00 發車)</p>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="bg-pink-50/50 rounded-2xl p-4 border border-pink-100">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="bg-pink-400 text-white text-[10px] font-black px-2 py-1 rounded">回程 1/27 (二)</span>
+                        <span class="text-pink-400 font-black text-lg">CI 109</span>
+                    </div>
+                    <div class="flex justify-between items-center text-gray-700 font-bold mb-3">
+                        <div class="text-center"><span class="block text-2xl font-black">19:30</span><span class="text-xs text-gray-400">NRT 成田</span></div>
+                        <i class="fas fa-arrow-right text-pink-200"></i>
+                        <div class="text-center"><span class="block text-2xl font-black">22:45</span><span class="text-xs text-gray-400">TPE 桃園</span></div>
+                    </div>
+                    <div class="bg-white p-3 rounded-xl border border-pink-100 flex items-start">
+                        <div class="bg-purple-400 text-white w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mr-3 text-xs font-black shadow-sm"><i class="fas fa-car"></i></div>
+                        <div>
+                            <p class="text-sm font-black text-gray-700">預約接送</p>
+                            <p class="text-xs text-red-500 font-bold mt-1 bg-red-50 px-2 py-0.5 rounded inline-block"><i class="fas fa-coins mr-1"></i>車上付 $1000 現金</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
             <div class="card-sticker p-5 bg-gradient-to-br from-red-50 to-white border-l-4 border-l-red-400 relative overflow-hidden">
                 <div class="absolute right-0 top-0 opacity-10 text-9xl text-red-500 -mr-4 -mt-4 rotate-12"><i class="fas fa-qrcode"></i></div>
                 <h3 class="text-lg font-black text-red-600 mb-2 flex items-center"><i class="fas fa-passport mr-2"></i>入境手續 Visit Japan Web</h3>
                 <div class="text-sm text-gray-600 font-bold leading-relaxed relative z-10">
                     <p class="mb-2">請確保在出發前完成 <span class="text-red-500 bg-red-100 px-1 rounded">Visit Japan Web</span> 填寫。</p>
-                    <p class="text-xs bg-white/60 p-2 rounded-lg border border-red-100 text-gray-500">
-                        <i class="fas fa-check-circle mr-1 text-green-500"></i> 截圖保存 QR Code <br>
-                        <i class="fas fa-wifi mr-1 text-blue-500"></i> 入境審查 + 海關申報
-                    </p>
                     <a href="https://vjw-lp.digital.go.jp/zh-hant/" target="_blank" class="mt-2 block text-center bg-red-500 text-white py-2 rounded-lg text-xs font-black shadow-sm">前往網站</a>
                 </div>
             </div>
-
-            <div class="card-sticker p-6 bg-white/95">
-                <h2 class="text-2xl font-black text-candy-dark mb-6 flex items-center"><span class="bg-pink-100 w-12 h-12 flex items-center justify-center rounded-full mr-3 text-pink-500 shadow-sm"><i class="fas fa-language fa-bounce"></i></span>生存日語</h2>
-                <div class="space-y-4">
-                    <details class="group bg-white border-2 border-orange-100 rounded-2xl overflow-hidden shadow-sm open:shadow-md transition-all">
-                        <summary class="flex items-center justify-between p-4 cursor-pointer bg-orange-50/50 hover:bg-orange-50 transition">
-                            <div class="flex items-center"><span class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-orange-400 shadow-sm mr-3 text-lg"><i class="fas fa-utensils"></i></span><span class="font-black text-gray-700">餐廳點餐</span></div>
-                            <i class="fas fa-chevron-down text-orange-300 group-open:rotate-180 transition-transform"></i>
-                        </summary>
-                        <div class="p-4 pt-2 border-t border-orange-100 bg-white grid grid-cols-2 gap-3">
-                            <button onclick="showFlashCard('請給我菜單', 'メニューをお願いします')" class="bg-gray-50 hover:bg-orange-100 border border-gray-100 p-3 rounded-xl text-left transition group/btn"><span class="block text-xs text-gray-400 mb-1">請給我菜單</span><span class="block text-sm font-black text-gray-700 group-hover/btn:text-orange-500">メニューを...</span></button>
-                            <button onclick="showFlashCard('我要點這個', 'これをください')" class="bg-gray-50 hover:bg-orange-100 border border-gray-100 p-3 rounded-xl text-left transition group/btn"><span class="block text-xs text-gray-400 mb-1">我要點這個</span><span class="block text-sm font-black text-gray-700 group-hover/btn:text-orange-500">これを...</span></button>
-                            <button onclick="showFlashCard('請給我水', 'お水をお願いします')" class="bg-gray-50 hover:bg-orange-100 border border-gray-100 p-3 rounded-xl text-left transition group/btn"><span class="block text-xs text-gray-400 mb-1">請給我水</span><span class="block text-sm font-black text-gray-700 group-hover/btn:text-orange-500">お水を...</span></button>
-                            <button onclick="showFlashCard('我要結帳', 'お会計をお願いします')" class="bg-gray-50 hover:bg-orange-100 border border-gray-100 p-3 rounded-xl text-left transition group/btn"><span class="block text-xs text-gray-400 mb-1">我要結帳</span><span class="block text-sm font-black text-gray-700 group-hover/btn:text-orange-500">お会計を...</span></button>
-                        </div>
-                    </details>
-                    <details class="group bg-white border-2 border-blue-100 rounded-2xl overflow-hidden shadow-sm open:shadow-md transition-all">
-                        <summary class="flex items-center justify-between p-4 cursor-pointer bg-blue-50/50 hover:bg-blue-50 transition">
-                            <div class="flex items-center"><span class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-blue-400 shadow-sm mr-3 text-lg"><i class="fas fa-shopping-bag"></i></span><span class="font-black text-gray-700">購物 & 交通</span></div>
-                            <i class="fas fa-chevron-down text-blue-300 group-open:rotate-180 transition-transform"></i>
-                        </summary>
-                        <div class="p-4 pt-2 border-t border-blue-100 bg-white grid grid-cols-2 gap-3">
-                            <button onclick="showFlashCard('可以刷卡嗎?', 'カードは使えますか？')" class="bg-gray-50 hover:bg-blue-100 border border-gray-100 p-3 rounded-xl text-left transition group/btn"><span class="block text-xs text-gray-400 mb-1">可以刷卡嗎?</span><span class="block text-sm font-black text-gray-700 group-hover/btn:text-blue-500">カード...</span></button>
-                            <button onclick="showFlashCard('有免稅嗎?', '免税はできますか？')" class="bg-gray-50 hover:bg-blue-100 border border-gray-100 p-3 rounded-xl text-left transition group/btn"><span class="block text-xs text-gray-400 mb-1">有免稅嗎?</span><span class="block text-sm font-black text-gray-700 group-hover/btn:text-blue-500">免税は...</span></button>
-                            <button onclick="showFlashCard('請載我去這裡', 'ここまでお願いします')" class="col-span-2 bg-yellow-50 hover:bg-yellow-100 border border-yellow-100 p-3 rounded-xl text-center transition group/btn"><span class="block text-xs text-gray-400 mb-1"><i class="fas fa-taxi mr-1"></i>給司機看</span><span class="block text-lg font-black text-gray-800 group-hover/btn:text-yellow-600">請載我去這裡</span></button>
-                        </div>
-                    </details>
-                </div>
-            </div>
-
+        
             <div class="card-sticker p-6 bg-white/95">
                 <h2 class="text-2xl font-black text-candy-dark mb-6 flex items-center"><span class="bg-candy-yellow w-12 h-12 flex items-center justify-center rounded-full mr-3 text-orange-500 shadow-sm"><i class="fas fa-bed"></i></span>住宿資訊</h2>
                 <div class="space-y-4">
-                    <details class="group bg-white border-2 border-candy-purple rounded-2xl overflow-hidden shadow-sm open:shadow-md transition-all">
-                        <summary class="flex items-center justify-between p-4 cursor-pointer bg-purple-50/50 hover:bg-purple-50 transition">
-                            <div class="flex items-center"><span class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-purple-400 shadow-sm mr-3 text-lg"><i class="fas fa-hotel"></i></span><div><h3 class="font-black text-gray-700">東京飯店範例</h3><span class="text-[10px] text-gray-400 font-bold">Tokyo Hotel</span></div></div>
-                            <i class="fas fa-chevron-down text-purple-300 group-open:rotate-180 transition-transform"></i>
+                    <details class="group bg-white border-2 border-candy-blue rounded-2xl overflow-hidden shadow-sm open:shadow-md transition-all" open>
+                        <summary class="flex items-center justify-between p-4 cursor-pointer bg-blue-50/50 hover:bg-blue-50 transition">
+                            <div class="flex items-center"><span class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-blue-400 shadow-sm mr-3 text-lg"><i class="fas fa-hotel"></i></span><div><h3 class="font-black text-gray-700 text-sm">Super Hotel 池袋西口</h3><span class="text-[10px] text-gray-400 font-bold">Ikebukuro Nishiguchi</span></div></div>
+                            <i class="fas fa-chevron-down text-blue-300 group-open:rotate-180 transition-transform"></i>
                         </summary>
-                        <div class="p-4 pt-0 border-t border-purple-100 bg-white">
+                        <div class="p-4 pt-0 border-t border-blue-100 bg-white">
                             <div class="flex gap-2 my-3">
-                                <a href="https://www.google.com/maps/search/?api=1&query=Shinjuku+Station" target="_blank" class="flex-1 bg-green-500 text-white py-2 rounded-xl text-xs font-black text-center shadow-sm hover:bg-green-600 transition flex items-center justify-center"><i class="fas fa-map-marked-alt mr-1"></i> Google Map</a>
-                                <button onclick="copyText('東京都新宿区...')" class="flex-1 bg-gray-100 text-gray-600 py-2 rounded-xl text-xs font-black hover:bg-gray-200 transition"><i class="fas fa-copy mr-1"></i> 複製地址</button>
-                                <button onclick="showTaxiCard('東京飯店', '東京都新宿区...')" class="flex-1 bg-yellow-400 text-white py-2 rounded-xl text-xs font-black hover:bg-yellow-500 transition shadow-sm"><i class="fas fa-taxi mr-1"></i> 找車</button>
+                                <a href="https://www.google.com/maps/search/?api=1&query=Super+Hotel+Ikebukuro+Nishiguchi" target="_blank" class="flex-1 bg-green-500 text-white py-2 rounded-xl text-xs font-black text-center shadow-sm hover:bg-green-600 transition flex items-center justify-center"><i class="fas fa-map-marked-alt mr-1"></i> 地圖</a>
+                                <button onclick="copyText('東京都豊島区池袋2-14-1')" class="flex-1 bg-gray-100 text-gray-600 py-2 rounded-xl text-xs font-black hover:bg-gray-200 transition"><i class="fas fa-copy mr-1"></i> 複製地址</button>
+                                <button onclick="showTaxiCard('Super Hotel 池袋西口', '東京都豊島区池袋2-14-1')" class="flex-1 bg-yellow-400 text-white py-2 rounded-xl text-xs font-black hover:bg-yellow-500 transition shadow-sm"><i class="fas fa-taxi mr-1"></i> 找車</button>
                             </div>
                             <div class="text-xs text-gray-500 space-y-2 font-bold bg-gray-50 p-3 rounded-xl">
-                                <p><i class="fas fa-map-pin mr-2 text-purple-400 w-4"></i> 東京都新宿区...</p>
-                                <p><i class="fas fa-phone mr-2 text-purple-400 w-4"></i> +81-3-1234-5678</p>
+                                <p><i class="fas fa-map-pin mr-2 text-blue-400 w-4"></i> 東京都豊島区池袋2-14-1</p>
+                                <p><i class="fas fa-phone mr-2 text-blue-400 w-4"></i> 03-5911-9000</p>
+                                <p><i class="fas fa-info-circle mr-2 text-blue-400 w-4"></i> 靠近池袋站 C1 或 C6 出口 (有電梯)</p>
                             </div>
                         </div>
                     </details>
                 </div>
             </div>
-
+        
             <div class="card-sticker p-6 bg-red-50 border-2 border-red-100 relative overflow-hidden">
-                <div class="absolute -right-4 -top-4 text-8xl text-red-200 opacity-20 rotate-12"><i class="fas fa-ambulance"></i></div>
                 <h2 class="text-xl font-black text-red-600 mb-4 flex items-center"><i class="fas fa-exclamation-triangle mr-2"></i> 緊急救援</h2>
                 <div class="grid grid-cols-3 gap-3">
                     <a href="tel:110" class="bg-white border border-red-200 p-3 rounded-xl flex flex-col items-center justify-center hover:bg-red-600 hover:text-white transition group shadow-sm"><i class="fas fa-user-shield text-2xl text-red-500 mb-1 group-hover:text-white"></i><span class="text-xs font-black">警察 110</span></a>
                     <a href="tel:119" class="bg-white border border-red-200 p-3 rounded-xl flex flex-col items-center justify-center hover:bg-red-600 hover:text-white transition group shadow-sm"><i class="fas fa-ambulance text-2xl text-red-500 mb-1 group-hover:text-white"></i><span class="text-xs font-black">救護 119</span></a>
                     <a href="tel:+81332807111" class="bg-white border border-red-200 p-3 rounded-xl flex flex-col items-center justify-center hover:bg-red-600 hover:text-white transition group shadow-sm"><i class="fas fa-phone-volume text-2xl text-red-500 mb-1 group-hover:text-white"></i><span class="text-xs font-black">駐日代表</span></a>
                 </div>
-                <p class="text-[10px] text-red-400 mt-2 text-center font-bold">駐日代表處(東京)：+81-3-3280-7111</p>
             </div>
         </div>
 
