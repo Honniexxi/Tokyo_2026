@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Japan Trip 2025 🇯🇵</title>
+    <title>Japan Trip 2026 🇯🇵</title>
     
     <link rel="icon" type="image/png" href="https://img.icons8.com/color/96/japan.png">
     <link rel="apple-touch-icon" href="https://img.icons8.com/color/180/japan.png">
@@ -84,11 +84,41 @@
             border: 3px solid #FFF;
             transition: transform 0.2s;
         }
-        /* [修改] nav-card 邊框顏色配合背景 */
-        .nav-card { transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); transform: scale(0.95); border-radius: 1.25rem; background: white; border: 2px solid #F0F8FF; } 
-        .nav-card.active { transform: scale(1.05) translateY(-5px); background-color: #FFF; border-color: #FF9AA2; color: #FF6B6B; box-shadow: 0 8px 15px -3px rgba(255, 154, 162, 0.4); }
-        .nav-card.active span.day-label { color: #FF6B6B; font-weight: 900; font-size: 1.4rem; }
-    
+/* [修改] 卡片基礎樣式 */
+        .card-sticker {
+            background-color: #FFFFFF;
+            border-radius: 1.5rem;
+            /* 陰影改為冷色調 */
+            box-shadow: 4px 4px 0px rgba(160, 196, 255, 0.2), 0 2px 5px rgba(0,0,0,0.05);
+            border: 3px solid #FFF;
+            transition: transform 0.2s;
+        }
+
+        /* [修改] 日期選擇卡片 (Day Selector) */
+        .nav-card { 
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); 
+            transform: scale(0.95); 
+            border-radius: 1.25rem; 
+            background: white; 
+            /* 未選取時是淡淡的藍色邊框 */
+            border: 2px solid #F0F8FF; 
+        } 
+        .nav-card.active { 
+            transform: scale(1.05) translateY(-5px); 
+            background-color: #FFF; 
+            /* [重點] 選取時變成 冰藍色邊框 */
+            border-color: #A0C4FF; 
+            /* [重點] 文字變深藍色 */
+            color: #3B82F6; 
+            /* [重點] 陰影變藍色光暈 */
+            box-shadow: 0 8px 15px -3px rgba(160, 196, 255, 0.6); 
+        }
+        .nav-card.active span.day-label { 
+            /* 日期文字變藍色 */
+            color: #3B82F6; 
+            font-weight: 900; 
+            font-size: 1.4rem; 
+        } 
         .page-section { display: none; animation: popUp 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55); } 
         .page-section.active { display: block; } 
         @keyframes popUp { from { opacity: 0; transform: scale(0.9) translateY(20px); } to { opacity: 1; transform: scale(1) translateY(0); } }
@@ -123,12 +153,19 @@
         .map-link { color: #FF9AA2; border-bottom: 3px dotted #FF9AA2; font-weight: 800; transition: all 0.2s; }
         .map-link:hover { color: #FF6B6B; border-bottom-style: solid; }
         
+    /* [修改] 底部導覽列 (Bottom Nav) */
         .bottom-nav-item { color: #C4C4C4; transition: all 0.3s; }
-        .bottom-nav-item.active { color: #FF6B6B; transform: translateY(-8px); }
+        .bottom-nav-item.active { 
+            /* 選取時文字變深藍色 */
+            color: #4A405F; 
+            transform: translateY(-8px); 
+        }
         .bottom-nav-item.active .icon-box { 
-            background: linear-gradient(135deg, #FF9AA2 0%, #FFB7B2 100%); 
+            /* [重點] 圖示背景改成 藍色漸層 (Blue to Mint) */
+            background: linear-gradient(135deg, #A0C4FF 0%, #B5EAD7 100%); 
             color: white; 
-            box-shadow: 0 6px 15px rgba(255, 154, 162, 0.5); 
+            /* 陰影改為藍色 */
+            box-shadow: 0 6px 15px rgba(160, 196, 255, 0.6); 
             transform: scale(1.2) rotate(-5deg);
         }
         
@@ -157,13 +194,13 @@
 </head>
 <body class="min-h-screen">
 
-    <div id="top-header" class="bg-white/80 backdrop-blur-md pt-4 pb-2 sticky top-0 z-40 shadow-sm border-b-4 border-candy-pink rounded-b-[2.5rem]" style="padding-top: max(1rem, env(safe-area-inset-top));">
+    <div id="top-header" class="bg-white/80 backdrop-blur-md pt-4 pb-2 sticky top-0 z-40 shadow-sm border-b-4 border-blue-200 rounded-b-[2.5rem]" style="padding-top: max(1rem, env(safe-area-inset-top));">
         <h1 class="relative text-center text-2xl font-black text-candy-dark mb-4 tracking-widest flex justify-center items-center drop-shadow-sm">
             <span class="bg-white text-red-500 w-10 h-10 rounded-full flex items-center justify-center mr-2 shadow-md transform -rotate-12 text-lg border-2 border-red-100">
                 <i class="fas fa-torii-gate"></i>
             </span>
-            JAPAN <span class="text-candy-red mx-1 font-mono">2025</span>
-        </h1>
+            JAPAN <span class="text-blue-400 mx-1 font-mono">2025</span>
+            </h1>
         
         <div id="day-selector" class="relative flex overflow-x-auto no-scrollbar gap-3 px-4 pb-2 md:justify-center transition-all duration-300">
             <button onclick="switchDay('day1', this)" data-day="day1" class="nav-card active flex-shrink-0 w-16 h-20 flex flex-col items-center justify-center"><span class="text-[10px] font-bold text-gray-400 mb-1">1/23</span><span class="font-black text-xl day-label">Fri</span></button>
