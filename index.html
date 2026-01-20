@@ -141,14 +141,20 @@
             text-align: center;
         }
     
-        .transit-info { 
-            background: #F0F9FF; 
-            border-radius: 1.5rem; padding: 1rem; 
-            border: 2px dashed #A0C4FF; 
-            display: flex; align-items: center; margin-bottom: 1.5rem; 
-            box-shadow: 4px 4px 0 #A0C4FF; 
-            transform: rotate(-1deg);
-        }
+        /* [修改] 交通卡片 - 銀灰車票風 */
+            .transit-info { 
+                background: #F8FAFC; /* 改為極淡的銀灰色 */
+                border-radius: 1.5rem; 
+                padding: 1rem; 
+                /* 邊框改為深灰藍色虛線，像車票撕線 */
+                border: 2px dashed #64748B; 
+                display: flex; 
+                align-items: center; 
+                margin-bottom: 1.5rem; 
+                /* 陰影也改深色，增加立體感 */
+                box-shadow: 4px 4px 0 #64748B; 
+                transform: rotate(-1deg);
+            }
         
         .map-link { color: #FF9AA2; border-bottom: 3px dotted #FF9AA2; font-weight: 800; transition: all 0.2s; }
         .map-link:hover { color: #FF6B6B; border-bottom-style: solid; }
@@ -282,6 +288,7 @@
             <div class="card-sticker p-6 bg-white/95">
                 <h2 class="text-2xl font-black text-candy-dark mb-6 flex items-center"><span class="bg-pink-100 w-12 h-12 flex items-center justify-center rounded-full mr-3 text-pink-500 shadow-sm"><i class="fas fa-language fa-bounce"></i></span>生存日語</h2>
                 <div class="space-y-4">
+                    
                     <details class="group bg-white border-2 border-orange-100 rounded-2xl overflow-hidden shadow-sm open:shadow-md transition-all">
                         <summary class="flex items-center justify-between p-4 cursor-pointer bg-orange-50/50 hover:bg-orange-50 transition">
                             <div class="flex items-center"><span class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-orange-400 shadow-sm mr-3 text-lg"><i class="fas fa-utensils"></i></span><span class="font-black text-gray-700">餐廳點餐</span></div>
@@ -294,6 +301,7 @@
                             <button onclick="showFlashCard('我要結帳', 'お会計をお願いします')" class="bg-gray-50 hover:bg-orange-100 border border-gray-100 p-3 rounded-xl text-left transition group/btn"><span class="block text-xs text-gray-400 mb-1">我要結帳</span><span class="block text-sm font-black text-gray-700 group-hover/btn:text-orange-500">お会計を...</span></button>
                         </div>
                     </details>
+        
                     <details class="group bg-white border-2 border-blue-100 rounded-2xl overflow-hidden shadow-sm open:shadow-md transition-all">
                         <summary class="flex items-center justify-between p-4 cursor-pointer bg-blue-50/50 hover:bg-blue-50 transition">
                             <div class="flex items-center"><span class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-blue-400 shadow-sm mr-3 text-lg"><i class="fas fa-shopping-bag"></i></span><span class="font-black text-gray-700">購物 & 交通</span></div>
@@ -303,6 +311,24 @@
                             <button onclick="showFlashCard('可以刷卡嗎?', 'カードは使えますか？')" class="bg-gray-50 hover:bg-blue-100 border border-gray-100 p-3 rounded-xl text-left transition group/btn"><span class="block text-xs text-gray-400 mb-1">可以刷卡嗎?</span><span class="block text-sm font-black text-gray-700 group-hover/btn:text-blue-500">カード...</span></button>
                             <button onclick="showFlashCard('有免稅嗎?', '免税はできますか？')" class="bg-gray-50 hover:bg-blue-100 border border-gray-100 p-3 rounded-xl text-left transition group/btn"><span class="block text-xs text-gray-400 mb-1">有免稅嗎?</span><span class="block text-sm font-black text-gray-700 group-hover/btn:text-blue-500">免税は...</span></button>
                             <button onclick="showFlashCard('請載我去這裡', 'ここまでお願いします')" class="col-span-2 bg-yellow-50 hover:bg-yellow-100 border border-yellow-100 p-3 rounded-xl text-center transition group/btn"><span class="block text-xs text-gray-400 mb-1"><i class="fas fa-taxi mr-1"></i>給司機看</span><span class="block text-lg font-black text-gray-800 group-hover/btn:text-yellow-600">請載我去這裡</span></button>
+                        </div>
+                    </details>
+        
+                    <details class="group bg-white border-2 border-purple-100 rounded-2xl overflow-hidden shadow-sm open:shadow-md transition-all">
+                        <summary class="flex items-center justify-between p-4 cursor-pointer bg-purple-50/50 hover:bg-purple-50 transition">
+                            <div class="flex items-center"><span class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-purple-400 shadow-sm mr-3 text-lg"><i class="fas fa-concierge-bell"></i></span><span class="font-black text-gray-700">住宿 & 櫃台</span></div>
+                            <i class="fas fa-chevron-down text-purple-300 group-open:rotate-180 transition-transform"></i>
+                        </summary>
+                        <div class="p-4 pt-2 border-t border-purple-100 bg-white grid grid-cols-1 gap-3">
+                            <button onclick="showFlashCard('包裹到了嗎?', '先に送った荷物は届いていますでしょうか？')" class="bg-gray-50 hover:bg-purple-100 border border-gray-100 p-3 rounded-xl text-left transition group/btn">
+                                <span class="block text-xs text-gray-400 mb-1"><i class="fas fa-box-open mr-1"></i>詢問包裹</span>
+                                <span class="block text-sm font-black text-gray-700 group-hover/btn:text-purple-500">先に送った荷物は...</span>
+                            </button>
+                            
+                            <button onclick="showFlashCard('可以寄放行李嗎?', '荷物を預かってもらえますか？')" class="bg-gray-50 hover:bg-purple-100 border border-gray-100 p-3 rounded-xl text-left transition group/btn">
+                                <span class="block text-xs text-gray-400 mb-1">可以寄放行李嗎?</span>
+                                <span class="block text-sm font-black text-gray-700 group-hover/btn:text-purple-500">荷物を預かって...</span>
+                            </button>
                         </div>
                     </details>
                 </div>
@@ -409,12 +435,20 @@
         <div id="page-tools" class="page-section space-y-5">
             <div class="card-sticker p-6 bg-white/95">
                 <h2 class="text-2xl font-black text-candy-dark mb-6 flex items-center"><span class="bg-candy-blue w-12 h-12 flex items-center justify-center rounded-full mr-3 text-blue-600 shadow-sm"><i class="fas fa-calculator fa-flip" style="--fa-animation-duration: 3s;"></i></span>匯率換算</h2>
+                
                 <div class="bg-white p-6 rounded-[2rem] border-2 border-gray-100 shadow-inner mb-6 relative overflow-hidden">
                     <div class="absolute -right-4 -top-4 w-20 h-20 bg-blue-50 rounded-full blur-xl"></div>
                     <label class="text-xs text-gray-400 font-black block mb-2 text-center uppercase tracking-widest">Exchange Rate</label>
-                    <div class="flex items-center justify-center"><span class="text-gray-400 font-bold mr-2">1 TWD ≈</span><input type="number" id="rate-input" value="4.6" class="w-24 bg-transparent text-center font-black text-3xl text-blue-500 border-b-2 border-blue-200 focus:border-blue-500 focus:outline-none"><span class="text-gray-400 font-bold ml-2">JPY</span></div>
+                    
+                    <div class="flex items-center justify-center">
+                        <span class="text-gray-400 font-bold mr-2">1 JPY ≈</span>
+                        <input type="number" id="rate-input" value="0.22" step="0.001" class="w-24 bg-transparent text-center font-black text-3xl text-blue-500 border-b-2 border-blue-200 focus:border-blue-500 focus:outline-none">
+                        <span class="text-gray-400 font-bold ml-2">TWD</span>
+                    </div>
+                    
                     <div class="text-center mt-3"><button onclick="fetchLiveRate()" class="text-[10px] bg-gray-100 text-gray-500 px-3 py-1 rounded-full hover:bg-blue-100 hover:text-blue-500 transition font-bold"><i class="fas fa-sync-alt mr-1" id="rate-loading"></i> 更新匯率</button></div>
                 </div>
+
                 <div class="space-y-3">
                     <div class="bg-white p-4 rounded-3xl border-2 border-gray-100 flex items-center shadow-sm group focus-within:border-blue-300 transition"><div class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-500 font-black text-xs mr-3">¥</div><div class="flex-1"><label class="text-[10px] text-gray-400 font-bold block">JAPANESE YEN</label><input type="number" id="jp-input" class="w-full bg-transparent text-2xl font-black text-gray-700 focus:outline-none" placeholder="0"></div></div>
                     <div class="flex justify-center text-gray-300"><i class="fas fa-arrow-down fa-bounce"></i></div>
@@ -512,10 +546,14 @@
             document.getElementById('flash-card-title').textContent = title;
             document.getElementById('flash-card-jp').textContent = jpText;
             const iconEl = document.getElementById('flash-card-icon');
+            
             if(title.includes('車') || title.includes('司機')) iconEl.innerHTML = '<i class="fas fa-taxi"></i>';
             else if(title.includes('吃') || title.includes('菜單') || title.includes('水')) iconEl.innerHTML = '<i class="fas fa-utensils"></i>';
             else if(title.includes('買') || title.includes('刷卡') || title.includes('免稅')) iconEl.innerHTML = '<i class="fas fa-shopping-bag"></i>';
+            // [新增] 包裹或行李顯示箱子圖案
+            else if(title.includes('包裹') || title.includes('行李')) iconEl.innerHTML = '<i class="fas fa-box-open"></i>';
             else iconEl.innerHTML = '<i class="fas fa-comment"></i>';
+            
             const modal = document.getElementById('flash-card-modal');
             modal.classList.remove('hidden');
             setTimeout(() => modal.classList.remove('opacity-0'), 10);
@@ -611,7 +649,7 @@
             return str;
         }
 
-        function renderItem(item) {
+       function renderItem(item) {
             // Google Maps URL Logic
             let mapUrl = item.Link;
             if (!mapUrl && item.Address) {
@@ -628,14 +666,18 @@
             let iconContent = '<i class="fas fa-map-pin"></i>';
 
             const t = item.Type ? item.Type.toLowerCase().trim() : 'spot';
+            
+            // --- [修改] 這裡開始是類別判斷 ---
             if (t === 'transit') {
                 return `
                     <div class="transit-info group">
-                        <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-lg text-candy-blue shadow-sm mr-3 group-hover:scale-110 transition"><i class="fas fa-train"></i></div>
+                        <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-lg text-slate-500 shadow-sm mr-3 group-hover:scale-110 transition border-2 border-slate-200">
+                            <i class="fas fa-train"></i>
+                        </div>
                         <div class="flex-1">
                             <span class="font-black block text-gray-700 text-sm">${item.Title}</span>
-                            <div class="flex justify-between text-xs mt-1 font-bold text-blue-400">
-                                <span class="bg-white/60 px-2 py-0.5 rounded-full"><i class="far fa-clock mr-1"></i>${displayTime}</span>
+                            <div class="flex justify-between text-xs mt-1 font-bold text-slate-400">
+                                <span class="bg-white/60 px-2 py-0.5 rounded-full border border-slate-200"><i class="far fa-clock mr-1"></i>${displayTime}</span>
                                 <span>${item.Subtitle}</span>
                             </div>
                             ${noteHtml}
@@ -646,18 +688,24 @@
                 iconClass = "bg-orange-100 text-orange-500 border-orange-200";
                 iconContent = '<i class="fas fa-utensils"></i>';
             } else if (t === 'shop') {
-                iconClass = "bg-candy-blue text-blue-500 border-blue-200";
+                iconClass = "bg-blue-100 text-blue-500 border-blue-200";
                 iconContent = '<i class="fas fa-shopping-bag"></i>';
             } else if (t === 'stay') {
-                iconClass = "bg-candy-purple text-purple-500 border-purple-200";
+                iconClass = "bg-purple-100 text-purple-500 border-purple-200";
                 iconContent = '<i class="fas fa-bed"></i>';
             } else if (t === 'plane') {
-                iconClass = "bg-candy-blue text-blue-500 border-blue-200";
+                iconClass = "bg-blue-200 text-blue-600 border-blue-300";
                 iconContent = '<i class="fas fa-plane"></i>';
+            } else if (t === 'event') { 
+                // [新增] 演唱會、展覽專用
+                iconClass = "bg-red-100 text-red-500 border-red-200"; // 紅色系，很顯眼
+                iconContent = '<i class="fas fa-ticket-alt"></i>';   // 票券圖示
             } else {
-                iconClass = "bg-candy-yellow text-orange-500 border-orange-200";
+                // 預設景點 (Spot)
+                iconClass = "bg-yellow-100 text-yellow-600 border-yellow-200";
                 iconContent = '<i class="fas fa-camera"></i>';
             }
+            // --- 類別判斷結束 ---
 
             return `
                 <div class="timeline-item">
@@ -767,13 +815,13 @@
         // ================= Finance (JPY logic) =================
         function updateExpensePreview() {
             const jpy = document.getElementById('cost').value;
-            const rate = document.getElementById('rate-input').value || 4.6; // 1 TWD = 4.6 JPY
+            const rate = parseFloat(document.getElementById('rate-input').value) || 0.22; 
             const previewDiv = document.getElementById('expense-twd-preview');
             const previewAmount = document.getElementById('preview-amount');
 
             if (jpy && jpy > 0) {
-                // TWD = JPY / Rate
-                const twd = Math.round(jpy / rate);
+                // [修改] 算法改為 JPY * Rate
+                const twd = Math.round(jpy * rate);
                 previewAmount.textContent = twd.toLocaleString();
                 previewDiv.classList.remove('hidden');
             } else {
@@ -791,15 +839,15 @@
             const originalText = btn.innerHTML;
             btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i>'; btn.disabled = true;
             
-            const currentRate = document.getElementById('rate-input').value || 4.6;
+            const currentRate = parseFloat(document.getElementById('rate-input').value) || 0.22;
             const jpyCost = document.getElementById('cost').value;
             
-            // [修改] 加入 note 欄位
             const data = { 
                 item: document.getElementById('item').value, 
-                note: document.getElementById('note').value, // 新增這行，抓取備註內容
+                note: document.getElementById('note').value,
                 cost: jpyCost, 
-                costTwd: Math.round(jpyCost / currentRate), 
+                // [修改] 算法改為 JPY * Rate
+                costTwd: Math.round(jpyCost * currentRate), 
                 rate: currentRate,
                 payer: document.querySelector('input[name="payer"]:checked').value 
             };
@@ -827,10 +875,11 @@
         const rateInput = document.getElementById('rate-input');
         
         function calculateExchange() { 
-            const rate = rateInput.value || 4.6; 
-            if(jpInput.value) twdInput.value = Math.round(jpInput.value / rate).toLocaleString();
+            const rate = parseFloat(rateInput.value) || 0.22; 
+            // [修改] 算法改為 JPY * Rate
+            if(jpInput.value) twdInput.value = Math.round(jpInput.value * rate).toLocaleString();
             else twdInput.value = '';
-            updateExpensePreview(); // Update expense form preview if rate changes
+            updateExpensePreview(); 
         }
         
         jpInput.addEventListener('input', calculateExchange);
@@ -838,10 +887,11 @@
         
         function fetchLiveRate() {
             document.getElementById('rate-loading').classList.add('fa-spin');
-            // Fetch TWD base, find JPY
-            fetch('https://api.exchangerate-api.com/v4/latest/TWD').then(r => r.json()).then(d => { 
-                if (d.rates.JPY) { 
-                    rateInput.value = d.rates.JPY.toFixed(2); 
+            // [修改] 改抓 JPY 為基準的 API
+            fetch('https://api.exchangerate-api.com/v4/latest/JPY').then(r => r.json()).then(d => { 
+                if (d.rates.TWD) { 
+                    // 顯示小數點後3位比較準 (例如 0.215)
+                    rateInput.value = d.rates.TWD.toFixed(3); 
                     calculateExchange(); 
                     showMessage('匯率更新', 'success'); 
                 } 
