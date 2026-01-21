@@ -425,15 +425,38 @@
 
         <div id="page-checklist" class="page-section space-y-5">
             <div class="card-sticker p-6 bg-white/95">
-                <h2 class="text-2xl font-black text-candy-dark mb-6 flex items-center"><span class="bg-candy-mint w-12 h-12 flex items-center justify-center rounded-full mr-3 text-green-600 shadow-sm"><i class="fas fa-backpack fa-bounce"></i></span>必備清單</h2>
-                <div class="flex gap-2 mb-6 p-1 bg-white rounded-2xl border-2 border-candy-mint shadow-sm">
-                    <input type="text" id="new-item-input" placeholder="還有什麼要帶的？" class="flex-1 p-3 bg-transparent border-none text-sm font-bold text-gray-700 focus:ring-0">
-                    <button onclick="addCustomItem()" class="bg-candy-mint text-green-700 w-10 h-10 rounded-xl flex items-center justify-center hover:bg-green-200 transition shadow-md m-1"><i class="fas fa-plus"></i></button>
+                <h2 class="text-2xl font-black text-candy-dark mb-6 flex items-center"><span class="bg-mint-100 w-12 h-12 flex items-center justify-center rounded-full mr-3 text-green-600 shadow-sm"><i class="fas fa-backpack fa-bounce"></i></span>必備清單</h2>
+                
+                <div class="mb-3 flex items-center justify-between">
+                    <div class="flex items-center">
+                        <span class="bg-blue-100 text-blue-600 text-[10px] font-black px-2 py-1 rounded mr-2">PUBLIC</span> 
+                        <span class="text-xs font-bold text-gray-400">大家都要帶 (同步 Google Sheet)</span>
+                    </div>
+                    <i class="fas fa-cloud-upload-alt text-blue-300 text-xs"></i>
                 </div>
-                <div class="mb-3 flex items-center"><span class="bg-candy-blue text-blue-600 text-[10px] font-black px-2 py-1 rounded mr-2">PUBLIC</span> <span class="text-xs font-bold text-gray-400">大家都要帶 (Excel)</span></div>
-                <div id="checklist-excel-container" class="space-y-2 mb-6"></div>
-                <div class="mb-3 flex items-center justify-between"><div class="flex items-center"><span class="bg-candy-purple text-purple-600 text-[10px] font-black px-2 py-1 rounded mr-2">PRIVATE</span> <span class="text-xs font-bold text-gray-400">我的專屬</span></div><i class="fas fa-lock text-gray-300 text-xs"></i></div>
+        
+                <div class="flex gap-2 mb-4 p-1 bg-blue-50/50 rounded-2xl border-2 border-blue-100 shadow-sm">
+                    <input type="text" id="public-item-input" placeholder="新增到公開清單..." class="flex-1 p-3 bg-transparent border-none text-sm font-bold text-gray-700 focus:ring-0 placeholder-gray-400">
+                    <button onclick="addPublicItem()" id="btn-add-public" class="bg-blue-400 text-white w-10 h-10 rounded-xl flex items-center justify-center hover:bg-blue-500 transition shadow-md m-1">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+        
+                <div id="checklist-excel-container" class="space-y-2 mb-8">
+                    <div class="text-center text-gray-300 text-xs py-4"><i class="fas fa-circle-notch fa-spin mr-2"></i>載入中...</div>
+                </div>
+        
+                <hr class="border-dashed border-gray-200 mb-6">
+        
+                <div class="mb-3 flex items-center justify-between"><div class="flex items-center"><span class="bg-purple-100 text-purple-600 text-[10px] font-black px-2 py-1 rounded mr-2">PRIVATE</span> <span class="text-xs font-bold text-gray-400">我的專屬 (只存在手機)</span></div><i class="fas fa-lock text-gray-300 text-xs"></i></div>
+                
+                <div class="flex gap-2 mb-4 p-1 bg-gray-50 rounded-2xl border-2 border-gray-100 shadow-sm">
+                    <input type="text" id="new-item-input" placeholder="新增私人項目..." class="flex-1 p-3 bg-transparent border-none text-sm font-bold text-gray-700 focus:ring-0 placeholder-gray-400">
+                    <button onclick="addCustomItem()" class="bg-purple-300 text-white w-10 h-10 rounded-xl flex items-center justify-center hover:bg-purple-400 transition shadow-md m-1"><i class="fas fa-plus"></i></button>
+                </div>
+        
                 <div id="checklist-custom-container" class="space-y-2"></div>
+                
                 <div class="flex justify-center mt-8">
                     <button onclick="resetChecklist()" class="text-xs text-gray-400 font-bold hover:text-red-400 transition bg-gray-50 px-4 py-2 rounded-full border border-gray-200"><i class="fas fa-trash-restore mr-1"></i> 重置打勾</button>
                 </div>
@@ -845,6 +868,52 @@
                 location.reload(); 
             }
             input.value = '';
+        }
+
+        // [新增] 新增公開清單到 Google Sheet
+        function addPublicItem() {
+            const input = document.getElementById('public-item-input');
+            const btn = document.getElementById('btn-add-public');
+            const val = input.value.trim();
+            
+            if (!val) return;
+            if (scriptURL === '' || scriptURL === 'YOUR_NEW_GOOGLE_SCRIPT_URL') { alert('請先設定 Script URL'); return; }
+
+            // UI Loading 狀態
+            const originalIcon = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i>';
+            btn.disabled = true;
+            input.disabled = true;
+
+            // 準備傳送資料
+            const data = {
+                type: 'checklist', // 告訴後端這是清單
+                item: val
+            };
+
+            fetch(scriptURL, { 
+                method: 'POST', 
+                body: JSON.stringify(data), 
+                mode: 'no-cors', 
+                headers: { 'Content-Type': 'application/json' } 
+            })
+            .then(() => {
+                // 成功後
+                input.value = '';
+                // 重新載入資料以顯示最新清單
+                fetchData(); 
+                alert('已新增到公開清單！');
+            })
+            .catch(err => {
+                console.error(err);
+                alert('新增失敗，請檢查網路');
+            })
+            .finally(() => {
+                // 恢復按鈕狀態
+                btn.innerHTML = originalIcon;
+                btn.disabled = false;
+                input.disabled = false;
+            });
         }
 
         function deleteCustomItem(item) {
