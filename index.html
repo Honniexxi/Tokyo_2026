@@ -735,8 +735,14 @@
 
             const linkHtml = mapUrl ? ` <a href="${mapUrl}" target="_blank" class="map-link text-candy-blue hover:text-blue-600 transition"><i class="fas fa-map-marked-alt ml-1 text-xs"></i></a>` : '';
             const addressHtml = item.Address ? `<div class="text-[10px] text-gray-400 font-bold mt-1 flex items-center bg-gray-50 px-2 py-1 rounded-lg w-fit"><i class="fas fa-map-pin mr-1 text-gray-300"></i>${item.Address}</div>` : '';
-            const noteHtml = item.Note ? `<div class="bg-gray-50 px-2 py-1 rounded-lg text-[10px] font-bold text-gray-500 mt-2 inline-flex items-center border border-gray-100"><i class="fas fa-sticky-note mr-1 text-candy-yellow"></i>${item.Note}</div>` : '';
-            
+            // [修改] 處理 Note 的換行 & 優化多行顯示樣式
+            const noteContent = item.Note ? item.Note.replace(/\n/g, '<br>') : '';
+            const noteHtml = item.Note ? `
+                <div class="bg-gray-50 px-2 py-1.5 rounded-lg text-[10px] font-bold text-gray-500 mt-2 flex items-start border border-gray-100">
+                    <i class="fas fa-sticky-note mr-1.5 text-candy-yellow mt-0.5 flex-shrink-0"></i>
+                    <span class="leading-normal break-words">${noteContent}</span>
+                </div>` : '';
+           
             const displayTime = formatTimeDisplay(item.Time);
 
             let iconClass = "bg-gray-200 text-gray-500"; 
@@ -1023,13 +1029,17 @@
 
         // ================= Weather (Tokyo: 35.6895, 139.6917) =================
         function fetchWeather() {
-            const apiUrl = 'https://api.open-meteo.com/v1/forecast?latitude=35.6895&longitude=139.6917&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&forecast_days=5';
+            // [修改] URL 增加了 &daily=...wind_speed_10m_max (抓取最大風速)
+            const apiUrl = 'https://api.open-meteo.com/v1/forecast?latitude=35.6895&longitude=139.6917&daily=weather_code,temperature_2m_max,temperature_2m_min,wind_speed_10m_max&timezone=Asia%2FTokyo&forecast_days=5';
+            
             fetch(apiUrl).then(r => r.json()).then(data => {
                 for (let i = 0; i < 5; i++) {
                     const dayNum = i + 1;
                     const code = data.daily.weather_code[i];
                     const min = Math.round(data.daily.temperature_2m_min[i]);
                     const max = Math.round(data.daily.temperature_2m_max[i]);
+                    // [新增] 取得當天最大風速
+                    const wind = data.daily.wind_speed_10m_max[i];
                     
                     const iconEl = document.getElementById(`weather-icon-day${dayNum}`);
                     const textEl = document.getElementById(`weather-text-day${dayNum}`);
@@ -1040,25 +1050,59 @@
                         textEl.innerHTML = `${min}°C ~ ${max}°C | ${getWeatherDesc(code)}`;
                     }
                     if(adviceEl) {
-                        adviceEl.innerText = getWeatherAdvice(code, min, max);
+                        // [修改] 將 wind 參數也傳進去
+                        adviceEl.innerText = getWeatherAdvice(code, min, max, wind);
                     }
                 }
             });
         }
         
-        function getWeatherAdvice(code, min, max) {
-            let advice = [];
+        function getWeatherAdvice(code, min, max, wind) {
+            let tips = [];
+
+            // 1. 先看天氣狀況 (優先級最高)
+            // 代碼表: 51-67(雨/凍雨), 80-82(陣雨), 95-99(雷雨)
             if ([51, 53, 55, 56, 57, 61, 63, 65, 66, 67, 80, 81, 82, 95, 96, 99].includes(code)) {
-                advice.push("☔ 帶傘");
-            } else if ([71, 73, 75, 77, 85, 86].includes(code)) {
-                advice.push("❄️ 下雪了");
+                tips.push("🌂 必備摺疊傘");
+                if (code >= 63) tips.push("👟 鞋子要防水"); // 大雨時提醒
+            } 
+            // 代碼表: 71-77(雪), 85-86(雪陣雨)
+            else if ([71, 73, 75, 77, 85, 86].includes(code)) {
+                tips.push("❄️ 下雪了!注意止滑");
+                tips.push("🧤 手套戴好");
             }
-            if (max <= 8) {
-                advice.push("🧣 穿大衣");
-            } else if (max > 25) {
-                advice.push("🧢 注意防曬");
+
+            // 2. 判斷風速 (日本冬天風大體感會少5度)
+            // 風速超過 20km/h 就算有感，超過 30km/h 算強風
+            if (wind > 25) {
+                tips.push("💨 風大!戴帽子保暖");
             }
-            return advice.join(" | ");
+
+            // 3. 判斷溫度 (1月底東京通常 0~10度)
+            if (max <= 5) {
+                tips.push("🧣 極凍!發熱衣穿兩層");
+                tips.push("🔥 暖暖包貼背部");
+            } else if (max <= 10) {
+                tips.push("🧥 洋蔥式穿搭(室內熱)"); // 日本室內暖氣強，提醒好穿脫
+                tips.push("🧣 圍巾是必須的");
+            } else if (max <= 15) {
+                tips.push("🧥 穿大衣即可");
+            } else if (max > 20) {
+                tips.push("👕 意外溫暖!不用太厚");
+            }
+
+            // 4. 乾燥提醒 (日本冬天濕度低)
+            if (code <= 3) { // 晴天或多雲時特別乾
+                // 隨機出現保濕提醒，增加趣味
+                if(Math.random() > 0.5) tips.push("💧 記得擦護唇膏");
+                else tips.push("⚡ 小心靜電");
+            }
+
+            // 5. 組合結果 (最多顯示 2-3 個建議，避免太長)
+            // 如果都沒有特殊天氣，就給個預設值
+            if (tips.length === 0) tips.push("✨ 享受日本之旅吧!");
+
+            return tips.slice(0, 3).join(" | ");
         }
 
         function getWeatherIcon(code) {
