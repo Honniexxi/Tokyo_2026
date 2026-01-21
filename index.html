@@ -581,17 +581,16 @@
         // Existing Fetch Data (Itinerary + Checklist)
         function fetchData() {
             if(scriptURL === '' || scriptURL === 'YOUR_NEW_GOOGLE_SCRIPT_URL') {
-                document.querySelectorAll('[id^="container-day"]').forEach(el => {
-                    el.innerHTML = '<div class="text-center text-gray-400 font-bold py-10">請設定 Google Script URL</div>';
-                });
-                renderChecklist([]); 
+                // ... (略) ...
                 return;
             }
 
-            fetch(scriptURL)
+            // [修改] 在網址後面加上 ?t=時間戳記，強制不讀快取
+            fetch(scriptURL + '?t=' + Date.now())
             .then(response => response.json())
             .then(data => {
                 if(data.itinerary) renderItinerary(data.itinerary);
+                // 這裡會更新公共清單
                 if(data.checklist) renderChecklist(data.checklist);
             })
             .catch(err => { console.error('Fetch error:', err); });
